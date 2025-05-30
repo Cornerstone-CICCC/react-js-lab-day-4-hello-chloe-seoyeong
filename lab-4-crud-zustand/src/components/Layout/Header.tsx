@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="flex justify-between">
-      <h1>zustand lab day</h1>
+    <div className="flex justify-between p-3">
+      <h1 className="">zustand lab day</h1>
       <nav>
         <menu className="flex gap-4">
           <li>
