@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { v4 as uuidv4 } from "uuid";
 
-type Post = {
+export type Post = {
   id: string;
   title: string;
   content: string;
@@ -11,11 +11,12 @@ type Post = {
 type PostStoreState = {
   posts: Post[];
   addPost: (post: Omit<Post, "id">) => void;
+  getPost: (id: string) => Post | null;
   editPost: (id: string, updatedPost: Partial<Post>) => void;
   deletePost: (id: string) => void;
 };
 
-export const usePostStore = create<PostStoreState>((set) => ({
+export const usePostStore = create<PostStoreState>((set, get) => ({
   posts: [],
   addPost: (post) => {
     const newPost = {
@@ -23,6 +24,11 @@ export const usePostStore = create<PostStoreState>((set) => ({
       ...post,
     };
     set((state) => ({ posts: [...state.posts, newPost] }));
+  },
+  getPost: (id) => {
+    const blog = get().posts.find((post) => post.id === id);
+    if (!blog) return null;
+    return blog;
   },
   editPost: (id, updatedPost) =>
     set((state) => ({
