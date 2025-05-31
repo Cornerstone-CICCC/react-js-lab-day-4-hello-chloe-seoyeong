@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { usePostStore } from "../../stores/post.store";
+import toast from "react-hot-toast";
 
 const BlogEdit = () => {
   const { slug } = useParams();
@@ -30,6 +31,7 @@ const BlogEdit = () => {
     setTitle("");
     setContent("");
     setPublished(false);
+    toast.success("Success to update!");
     navigate("/blog");
   };
 
@@ -64,7 +66,12 @@ const BlogEdit = () => {
             id="publish"
           />
         </div>
-        <button className="w-full border-1 p-2">Update Post</button>
+        <button
+          type="button"
+          className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
+        >
+          Update Post
+        </button>
       </form>
     </div>
   );

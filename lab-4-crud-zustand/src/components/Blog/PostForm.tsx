@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { usePostStore } from "../../stores/post.store";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const PostForm = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const PostForm = () => {
     setTitle("");
     setContent("");
     setPublished(false);
+    toast.success("Success to add");
     navigate("/blog");
   };
 
